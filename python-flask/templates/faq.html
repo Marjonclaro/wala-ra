@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Help & FAQ — TechRescue</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <style>
+    /* Style to apply the background image using Jinja to ensure correct URL path */
+    .bg-image-home {
+      background-image: url('{{ url_for("static", filename="BG.jpg") }}');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+    /* Fade out effect for page transitions (optional here, but good for consistency) */
+    .fade-out {
+      opacity: 0;
+      transition: opacity 0.3s ease-out;
+    }
+  </style>
+</head>
+
+<body class="bg-image-home">
+  <!-- Wrapper for the frosted glass background effect -->
+  <div class="page-content-wrapper">
+    <header class="topbar">
+      <a href="/" class="logo">TechRescue</a>
+      <span class="tag">Help Center</span>
+    </header>
+
+    <main class="page">
+      <section class="page-section">
+        <h2>Frequently Asked Questions ❓</h2>
+        <p class="muted">Find quick answers and troubleshooting guides.</p>
+        
+        <div class="card" style="margin-bottom: 15px;">
+          <h4>Q: How long does a repair usually take?</h4>
+          <p>A: Most common repairs are completed within 3-5 business days, depending on parts availability.</p>
+        </div>
+
+        <div class="card" style="margin-bottom: 15px;">
+          <h4>Q: What devices do you service?</h4>
+          <p>A: We specialize in laptops, smartphones, and small home electronics.</p>
+        </div>
+        
+        <p style="margin-top: 25px;">Still need help? Please log in or create an account to submit a service request.</p>
+
+      <a href="/customer-dashboard" class="btn outline small" style="margin-top: 15px; display: block;">
+        ⬅ Back
+      </a>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>© 2025 TechRescue</div>
+      <div class="small">Built with Flask • Clean UI</div>
+    </footer>
+  </div>
+
+  <script>
+    function openPage(page) {
+      // Small helper function for navigation with a fade effect
+      document.body.classList.add('fade-out');
+      setTimeout(() => window.location.href = page, 300);
+    }
+  </script>
+</body>
+</html>

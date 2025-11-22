@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TechRescue Login Portal</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <style>
+    /* Fade out effect for page transitions */
+    .bg-image-home {
+      background-image: url('{{ url_for("static", filename="BG.jpg") }}');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+    /* Fade out effect for page transitions (optional here, but good for consistency) */
+    .fade-out {
+      opacity: 0;
+      transition: opacity 0.3s ease-out;
+    }
+  </style>
+</head>
+
+<!-- Apply the background image class here -->
+<body class="bg-home">
+  <!-- Wrapper for the frosted glass background effect defined in style.css -->
+  <div class="page-content-wrapper">
+    <header class="topbar">
+      <div class="brand">
+        <!-- Hamburger Menu for mobile navigation -->
+        <button class="burger" id="navToggle" aria-label="Toggle menu">☰</button>
+        <a href="/" class="logo">TechRescue</a>
+        <span class="tag">Support Portal</span>
+      </div>
+
+      <!-- Main Navigation Links -->
+      <nav class="nav" id="mainNav">
+        <a href="/" class="nav-link">Home</a>
+        <a href="/faq" class="nav-link">Help & FAQ</a> 
+      </nav>
+    </header>
+
+    <main class="page">
+      <!-- Hero Section - Center aligned content for the landing page -->
+      <section class="hero" style="flex-direction: column; text-align: center; max-width: 600px; margin: 28px auto;">
+        <h1>Welcome to TechRescue!</h1>
+        <p class="muted">Log in to manage your requests, track your repairs, and access specialized support services.</p>
+        
+        <div class="hero-actions" style="margin-top: 25px;">
+          <!-- Customer Actions -->
+          <button class="btn large" onclick="openPage('/login')">LOGIN to Account</button>
+          <button class="btn large outline" onclick="openPage('/signup')">Create Account</button>
+        </div>
+      </section>
+
+      <!-- Admin/Technician Login Link -->
+      <section class="page-section" style="margin-top: 40px; text-align: center;">
+        <h2>Need Technician Access?</h2>
+        <p class="muted">If you are an authorized administrator or technician, please use your dedicated login link.</p>
+        <a href="/admin-login" class="btn small outline">Technician/Admin Login</a>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>© 2025 TechRescue</div>
+      <div class="small">Built with Flask • Clean UI</div>
+    </footer>
+  </div>
+
+  <script>
+    /**
+     * Handles smooth page navigation with a fade-out effect.
+     * @param {string} page - The URL to navigate to.
+     */
+    function openPage(page) {
+      // Add the fade-out class immediately
+      document.body.classList.add('fade-out');
+      // Wait for the transition duration (300ms) before changing the page
+      setTimeout(() => window.location.href = page, 300);
+    }
+    
+    // Hamburger Menu Toggle Logic for mobile devices
+    const navToggle = document.getElementById('navToggle');
+    const mainNav = document.getElementById('mainNav');
+
+    if (navToggle && mainNav) {
+      navToggle.addEventListener('click', () => {
+        mainNav.classList.toggle('open');
+      });
+      // Close menu on link click (for mobile experience)
+      mainNav.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+          // Check if the menu is open before trying to close it
+          if (mainNav.classList.contains('open')) {
+            mainNav.classList.remove('open');
+          }
+        });
+      });
+    }
+  </script>
+</body>
+</html>
